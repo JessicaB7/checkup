@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Check-up do negócio</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f6f2ee;color:#222;font-family:Montserrat,Arial,sans-serif;font-size:15px;line-height:1.55}
+header{background:#1d1a18;color:#fff;padding:18px 20px}
+header .in{max-width:680px;margin:0 auto;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+header strong{font-size:15px;letter-spacing:.02em}
+header span{font-size:12px;color:#c9bdb6}
+main{max-width:680px;margin:0 auto;padding:28px 20px 60px}
+h1{font-size:24px;margin:0 0 8px}
+.intro{margin:0 0 26px;color:#555}
+fieldset{border:0;border-top:2px solid #ab5a3c;margin:0 0 26px;padding:16px 0 0}
+legend{font-weight:700;font-size:16px;padding:0 8px 0 0}
+legend b{color:#ab5a3c}
+.help{color:#666;font-size:13px;margin:0 0 12px}
+label.r{display:flex;gap:10px;align-items:flex-start;padding:8px 0;cursor:pointer}
+label.r input{margin-top:4px;accent-color:#ab5a3c}
+label.r small{display:block;color:#777;font-size:13px}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2d9d3}
+th,td{padding:10px 8px;border-bottom:1px solid #eee5df;text-align:center;font-size:14px}
+th{background:#efe7e1;font-weight:600;font-size:12px}
+td:first-child,th:first-child{text-align:left}
+td input{accent-color:#ab5a3c;width:17px;height:17px;cursor:pointer}
+.alt td{border-top:2px solid #e2d9d3}
+.alt small{color:#777}
+button{font:inherit;font-weight:600;padding:11px 20px;border-radius:4px;border:1px solid #ab5a3c;cursor:pointer}
+.go{background:#ab5a3c;color:#fff}
+.sec{background:#fff;color:#ab5a3c}
+.msg{color:#a33;font-size:13px;margin-left:10px}
+#res{}
+#res h2{font-size:19px;margin:0 0 6px}
+#res h3{font-size:15px;margin:22px 0 8px;color:#ab5a3c}
+#res ol,#res ul{margin:0;padding-left:20px}
+#res li{margin:0 0 10px}
+#res li span{display:block;color:#666;font-size:13px}
+.acts{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.view{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+tr.done td{background:#fbf6f2}
+tr.done td:first-child{box-shadow:inset 3px 0 0 #ab5a3c}
+fieldset{transition:opacity .3s}
+.bar{position:sticky;bottom:0;background:#f6f2ee;border-top:1px solid #e2d9d3;padding:12px 0;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}
+.prog{flex:1;height:6px;background:#e7ddd6;border-radius:3px;overflow:hidden;max-width:180px}
+.prog i{display:block;height:100%;width:0;background:#ab5a3c;transition:width .3s}
+.cnt{font-size:13px;color:#666;white-space:nowrap}
+.go:disabled{opacity:.45;cursor:not-allowed}
+.back{background:none;border:0;color:#ab5a3c;padding:0;font-weight:600;margin-bottom:14px}
+.mods{list-style:none;padding:0;margin:0}
+.mods li{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid #e2d9d3;border-left:4px solid #ab5a3c;padding:12px 14px;margin:0 0 10px;opacity:0;animation:fade .4s ease forwards}
+.mods.l2 li{border-left-color:#d8c6bb}
+.mods li.seen{opacity:.55!important}
+.mods li.seen strong{text-decoration:line-through}
+.mods input{accent-color:#ab5a3c;width:18px;height:18px;margin-top:2px;cursor:pointer;flex:0 0 auto}
+.mods span{display:block;color:#666;font-size:13px}
+.n{font-weight:700;color:#ab5a3c;min-width:26px}
+.sum{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 4px}
+.sum div{background:#fff;border:1px solid #e2d9d3;padding:10px 14px;flex:1;min-width:120px}
+.sum b{display:block;font-size:22px;color:#ab5a3c}
+.bonus{margin:30px 0 6px;background:#1d1a18;color:#fff;padding:22px 20px;border-radius:4px}
+.bh{font-weight:700;font-size:18px;color:#e9a07a;margin-bottom:6px}
+.bonus p{margin:0 0 14px;color:#cfc3bc;font-size:14px}
+#res .bonus ul{list-style:none;margin:0;padding:0}
+.bonus li{display:flex;gap:12px;align-items:center;background:#2a2522;border:1px solid #3a322e;padding:12px 14px;margin:0 0 8px;font-weight:600;opacity:0;animation:fade .4s ease forwards}
+#res .bonus .bt{display:block;color:#fff;font-size:15px}#res .bonus .bt small{display:block;color:#bfa79a;font-weight:500;font-size:12px;margin-top:2px}#res .bonus .bi{flex:0 0 28px;height:28px;border-radius:50%;background:#ab5a3c;color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700}
+footer{text-align:center;font-size:12px;color:#888;padding:0 20px 30px}
+@media(max-width:520px){th,td{padding:8px 4px;font-size:13px}th{font-size:11px}}
+</style>
+</head>
+<body>
+<header><div class="in"><strong>Contabilista Explica</strong><span>Academia de Contabilidade para Empreendedores</span></div></header>
+<main>
+<div id="vForm" class="view">
+<h1>Check-up do negócio</h1>
+<p class="intro">Responde às perguntas abaixo. No fim aparece a lista dos módulos que deves ver primeiro, de acordo com a fase do teu negócio e com os temas em que tens mais dúvidas.</p>
+
+<form id="f">
+<fieldset>
+  <legend><b>1.</b> Em que fase está o teu negócio?</legend>
+  <div id="fase"></div>
+</fieldset>
+
+<fieldset id="f2" style="display:none">
+  <legend><b>2.</b> Nível de conhecimento em cada tema</legend>
+  <p class="help">Assinala uma opção por linha.</p>
+  <table><thead id="th"></thead><tbody id="tb"></tbody></table>
+</fieldset>
+
+<fieldset id="f3" style="display:none;margin-bottom:10px">
+  <legend><b>3.</b> Qual é o tema em que te sentes menos seguro(a)?</legend>
+  <div id="tema"></div>
+</fieldset>
+
+<div id="send" class="bar" style="display:none"><div style="display:flex;align-items:center;gap:10px;flex:1"><div class="prog"><i id="pg"></i></div><span class="cnt" id="cnt"></span></div><button type="submit" class="go" id="gobtn" disabled>Ver os módulos recomendados</button></div>
+</form>
+</div>
+
+<div id="vRes" class="view" style="display:none">
+<button class="back" id="back">← Voltar às respostas</button>
+<div id="res"></div>
+</div>
+</main>
+<footer>Podes repetir este check-up sempre que a situação do teu negócio mudar.</footer>
+
+<script>
+const MOD={2:"Início de atividade",3:"Faturação",4:"Segurança Social",5:"IVA",6:"IRS",7:"Gestão financeira",8:"Definição de preços",9:"Contabilidade organizada",10:"Constituir equipa",11:"Quando passar a empresa",12:"Essenciais para a abertura da empresa",13:"Constituí uma empresa: próximos passos",14:"Obrigações fiscais e contabilísticas da empresa",15:"O dinheiro da empresa",16:"Remuneração do gerente e trabalhadores",17:"Perceber os números da empresa"};
+const SOON={17:true};
+const FASES=[
+ ["a","Ainda não abri atividade","O negócio está a começar ou ainda é uma ideia."],
+ ["b","Trabalho por conta própria","Tenho atividade aberta nas Finanças e emito faturas-recibo."],
+ ["c","Trabalho por conta própria e estou a pensar passar a empresa",""],
+ ["d","Já tenho empresa","Sociedade por quotas ou unipessoal por quotas."]
+];
+const Q={
+ a:[["Preenchimento da declaração de início de atividade",2],["Emissão de faturas aos clientes",3],["Enquadramento em IVA",5],["Conhecimento sobre as contribuições da Segurança Social",4],["Enquadramento em IRS",6],["Definição de preços com base nos custos e margem de lucro",8],["Separação das finanças pessoais e do negócio",7]],
+ b:[["Emissão de faturas-recibo com IVA e retenção na fonte",3],["Conhecimento sobre as contribuições da Segurança Social e a declaração trimestral",4],["Enquadramento em IVA e limite de isenção",5],["Cálculo do IRS da atividade",6],["Separação das finanças pessoais e do negócio",7],["Definição de preços com base nos custos e margem de lucro",8],["Escolha entre regime simplificado e contabilidade organizada",9]],
+ d:[["Abertura de conta bancária e início de atividade da empresa",13],["Obrigações fiscais e contabilísticas da empresa",14],["Gestão do dinheiro da empresa",15],["Definição da remuneração do gerente",16],["Leitura dos números da empresa (balancete, resultados e balanço)",17]]
+};
+const PLANO={b:["Contratação de colaboradores",10],d:["Contratação de trabalhadores",16]};
+const TEMA={ti:[["Segurança Social",4],["IVA",5],["IRS",6],["Faturação",3],["Preços",8],["Gestão do dinheiro",7]],emp:[["Obrigações fiscais (IVA, IRC, retenções)",14],["Gestão do dinheiro da empresa",15],["Remuneração do gerente",16],["Números da empresa",17]]};
+const $=id=>document.getElementById(id);
+let fase=null;
+const key=()=>fase==="c"?"b":fase;
+const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+$("fase").innerHTML=FASES.map(([v,t,d])=>`<label class="r"><input type="radio" name="fase" value="${v}"><span>${t}${d?`<small>${d}</small>`:""}</span></label>`).join("");
+document.querySelectorAll('input[name=fase]').forEach(r=>r.onchange=()=>{fase=r.value;build()});
+function total(){const k=key();return Q[k].length+(PLANO[k]?1:0)+1}
+function answered(){const fd=new FormData($("f"));const k=key();let n=Q[k].filter((_,i)=>fd.get("q"+i)!==null).length;if(PLANO[k]&&fd.get("plano")!==null)n++;if(fd.get("tema")!==null)n++;return n}
+function upd(){const t=total(),n=answered();$("pg").style.width=(n/t*100)+"%";$("cnt").textContent=n===t?"Tudo respondido":`${n} de ${t} respondidas`;$("gobtn").disabled=n<t;
+ document.querySelectorAll("#tb tr").forEach(tr=>tr.classList.toggle("done",!!tr.querySelector("input:checked")))}
+function build(){
+ const k=key(),qs=Q[k];
+ $("th").innerHTML="<tr><th>Tema</th><th>Domino</th><th>Tenho dúvidas</th><th>Não domino</th></tr>";
+ let h=qs.map(([t],i)=>`<tr><td>${t}</td>${[0,1,2].map(v=>`<td><input type="radio" name="q${i}" value="${v}" aria-label="${t}"></td>`).join("")}</tr>`).join("");
+ const p=PLANO[k];
+ if(p) h+=`<tr class="alt"><td>${p[0]}<br><small>Está nos teus planos?</small></td>${["Sim","Talvez","Não"].map((o,v)=>`<td><label style="cursor:pointer"><input type="radio" name="plano" value="${v}"><br><small>${o}</small></label></td>`).join("")}</tr>`;
+ $("tb").innerHTML=h;
+ const T=k==="d"?TEMA.emp:TEMA.ti;
+ $("tema").innerHTML=T.map(([t,m])=>`<label class="r"><input type="radio" name="tema" value="${m}"><span>${t}</span></label>`).join("")+`<label class="r"><input type="radio" name="tema" value="0"><span>Nenhum em especial</span></label>`;
+ ["f2","f3"].forEach(id=>{$(id).style.display="block";$(id).classList.remove("view");void $(id).offsetWidth;$(id).classList.add("view")});
+ $("send").style.display="flex";
+ $("f2").querySelectorAll("input").forEach(i=>i.onchange=()=>{upd();const tr=i.closest("tr").nextElementSibling;});
+ $("f3").querySelectorAll("input").forEach(i=>i.onchange=upd);
+ upd();
+}
+function compute(fd){
+ const k=key(),qs=Q[k],first=new Map(),later=new Map();
+ const add=(m,why,p)=>{if(p){first.set(m,first.get(m)||why);later.delete(m)}else if(!first.has(m)&&!later.has(m))later.set(m,why)};
+ if(fase==="a")add(2,"Para abrires atividade com o enquadramento certo.",true);
+ qs.forEach(([t,m],i)=>{const v=+fd.get("q"+i);if(v===2)add(m,`${t}: assinalaste «Não domino».`,true);else if(v===1)add(m,`${t}: assinalaste «Tenho dúvidas».`,false)});
+ const pv=fd.get("plano");if(PLANO[k]&&pv!==null){const m=PLANO[k][1];if(pv==="0")add(m,"A contratação está nos teus planos.",true);else if(pv==="1")add(m,"Para quando pensares em contratar.",false)}
+ const tm=+fd.get("tema");if(tm)add(tm,"É o tema em que te sentes menos seguro(a).",true);
+ if(fase==="c"){add(11,"Para perceberes se e quando compensa abrir empresa.",true);add(12,"O que precisas de saber antes de constituir a sociedade.",true);add(13,"Os passos logo a seguir à constituição.",false)}
+ if(fase==="b"){add(2,"Para confirmares o teu enquadramento e a declaração de alteração de atividade.",false);add(11,"Quando começares a pensar em passar a empresa.",false)}
+ if(fase==="a")add(9,"Mais à frente, quando o negócio crescer.",false);
+ if(fase==="d")add(12,"Para rever o funcionamento da sociedade por quotas.",false);
+ const ord=m=>[...m.entries()].sort((x,y)=>x[0]-y[0]);
+ const B=[["Guia de Enquadramento do Negócio",2,"abc"],["Calendário Fiscal 2027 – Trabalhadores por conta própria",2,"abc"],["Guia da Declaração Trimestral – Segurança Social",4,"abc"],["Guia da Declaração Periódica de IVA",5,"abc"],["Gestor de Negócios – Trabalhador Independente",7,"abc"],["Checklist – Criar uma Nova Empresa",12,"c"],["Calendário Fiscal 2027 – Empresas",14,"cd"]];
+ const tools=B.filter(x=>x[2].includes(fase)).map(x=>[x[0],x[1]]);
+ return{fase,F:ord(first),L:ord(later),tools};
+}
+function render(r){
+ const seen=store.get("ck_seen")||{};
+ let d=0;
+ const li=([m,why])=>`<li style="animation-delay:${(d++)*70}ms"><div><strong>Módulo ${m} – ${MOD[m]}</strong>${SOON[m]?" <em style='color:#999;font-style:normal'>(em breve)</em>":""}<span>${why}</span></div></li>`;
+ const all=[...r.F,...r.L].map(x=>x[0]);
+ $("res").innerHTML=`<h1>Os teus módulos</h1>
+ <p class="intro">Fase: ${FASES.find(x=>x[0]===r.fase)[1]}.</p>
+ <h3 style="color:#ab5a3c;margin:24px 0 10px">Começa por aqui</h3>${r.F.length?`<ul class="mods">${r.F.map(li).join("")}</ul>`:"<p>Não assinalaste nenhum tema em falta. Podes ver os módulos pela ordem que preferires.</p>"}
+ ${r.L.length?`<h3 style="color:#8a6f62;margin:24px 0 10px">Depois</h3><ul class="mods l2">${r.L.map(li).join("")}</ul>`:""}
+ <div class="bonus"><div class="bh">Bónus e Ferramentas para ti</div><p>Estes materiais estão no módulo Bónus e Ferramentas e vão ajudar-te a pôr em prática o que aprendes nos módulos.</p><ul>${r.tools.map(([t,m],i)=>`<li style="animation-delay:${(d+i)*70}ms"><span class="bi">${i+1}</span><span class="bt">${t}<small>Complementa o Módulo ${m} – ${MOD[m]}</small></span></li>`).join("")}</ul></div>
+ <div class="acts"><button type="button" class="go" id="copy">Copiar esta lista</button><button type="button" class="sec" id="redo">Fazer o check-up de novo</button><span class="msg" id="cm" style="color:#3a7"></span></div>`;
+ const sc=()=>{};
+ const txt="Check-up do negócio – os meus módulos\n\nComeça por aqui:\n"+r.F.map(([m])=>`- Módulo ${m} – ${MOD[m]}`).join("\n")+(r.L.length?"\n\nDepois:\n"+r.L.map(([m])=>`- Módulo ${m} – ${MOD[m]}`).join("\n"):"");
+ $("copy").onclick=async()=>{try{await navigator.clipboard.writeText(txt);$("cm").textContent="Lista copiada."}catch(e){$("cm").textContent="Não foi possível copiar."}};
+ $("redo").onclick=()=>{store.set("ck_res_v2",null);$("f").reset();fase=null;["f2","f3"].forEach(id=>$(id).style.display="none");$("send").style.display="none";location.hash="";show("form")};
+}
+function show(v){$("vForm").style.display=v==="form"?"block":"none";$("vRes").style.display=v==="res"?"block":"none";const el=v==="form"?$("vForm"):$("vRes");el.classList.remove("view");void el.offsetWidth;el.classList.add("view");window.scrollTo(0,0)}
+$("f").onsubmit=e=>{e.preventDefault();if(answered()<total())return;const r=compute(new FormData($("f")));store.set("ck_res_v2",r);render(r);location.hash="resultado";show("res")};
+$("back").onclick=()=>{location.hash="";show("form")};
+window.addEventListener("hashchange",()=>{if(location.hash==="#resultado"){const r=store.get("ck_res_v2");if(r&&Array.isArray(r.tools)&&r.tools.every(t=>Array.isArray(t))){render(r);show("res")}}else show("form")});
+(()=>{const r=store.get("ck_res_v2");const ok=r&&Array.isArray(r.tools)&&r.tools.every(t=>Array.isArray(t));if(location.hash==="#resultado"&&!ok){location.hash=""}if(location.hash==="#resultado"&&ok){fase=r.fase;render(r);show("res")}})();
+</script>
+</body>
+</html>
